@@ -21,6 +21,7 @@
 #
 # How to run it: sh MDM-Profile-Checker.sh ip-list.txt file2.sh
 # As today, 2019-01-27, in this script the remote admin account is 'radmin', replaced it with the one in your remote computer's to check. 
+# I intend to make a variable for that user, but not today. :)
 # +-------------------------------------------------------------------------------------------------------------------------------------+
 clear
 echo "MDM Profile Checker"
@@ -47,7 +48,7 @@ do
 	ping -c 3 "$ip" -W 3 > pingResults.log
 	hostUpYesorNot=$(cat pingResults.log | grep 100 | grep loss)
 	hostDOWN="3 packets transmitted, 0 packets received, 100.0% packet loss"
-	if [[ $hostUpYesorNot == $hostDOWN ]] ; then
+	if [[ "$hostUpYesorNot" == "$hostDOWN" ]] ; then
 		#echo "---> PINGING HOST: $ip"
 		isDown="OFFLINE" 
 		echo "$ip\t$isDown" >> results.log
