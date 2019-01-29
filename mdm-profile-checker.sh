@@ -41,7 +41,7 @@ echo ""
 echo "MDM Profile Checker in progress..."
 todaysdate=$(date +"%Y_%m_%d_%H_%M_%S")
 
-for ip in `cat $1`
+for ip in `cat $1 $2`
 do        
 	echo "+-------------------------------------------------------------------------------------+"
         echo "---> CHECKING REMOTE HOST $ip FOR AVAILABILITY..."
@@ -58,7 +58,7 @@ do
 	else
 		echo "We're good to go!"
 		echo "---> UPLOADING FILE TO HOST: $ip"
-		a="scp -o StrictHostKeyChecking=no file2.sh radmin@"
+		a="scp -o StrictHostKeyChecking=no $2 radmin@"
 		b=":$2"
 		$a$ip$b
 		echo "---> CHECKING FOR PROFILES..."
