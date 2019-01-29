@@ -1,10 +1,10 @@
 #!/bin/bash
 #Script name: mdm-profile-checker.sh
-#Source: https://github.com/wwwhtml/macos-mdm-profile-checker/mdm-profile-checker.sh
+#Github Repository: https://github.com/wwwhtml/macos-mdm-profile-checker/
 #Author: Daniel Arauz - DanArauz@gmail.com
 #Date: 2019-01-21 (MLK Day)
 #Description: Works way faster if remote computer has the controller computer's SSH Public key already.
-#This script checks for MDM Profiles in remote MacOS computers:
+#This script checks for MDM Profiles are installed in remote MacOS computers:
 #Support files:
 #	ip-list.txt (add the computer IPs to check)
 #	mdm-profile-checker.sh
@@ -26,7 +26,7 @@
 # +-------------------------------------------------------------------------------------------------------------------------------------+
 clear
 echo "+-------------------------------------------------------------------------------------+"
-echo "| This script checks for installed MDM Profiles on remote MacOS computers.            |"
+echo "| This script checks if  MDM Profiles are installed on remote MacOS computers.        |"
 echo "+-------------------------------------------------------------------------------------+"
 echo " "
 echo "Files required for this task:"
