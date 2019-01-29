@@ -33,13 +33,16 @@ echo "    ip-list.txt"
 echo "    MDM-Profile-Checker.sh"
 echo "    file2.sh"
 echo " "
-echo "Results at: $(pwd)/results.log"
+echo "Results will be in: $(pwd)/"
 echo ""
 read -p "Press [ENTER] to continue, or CTRL+C to quit."
 clear
 echo ""
 echo "MDM Profile Checker in progress..."
 echo ""
+
+todaysdate=$(date +"%Y_%m_%d_%H_%M_%S")
+
 for ip in `cat $1`
 do        
 	echo "+-------------------------------------------------------------------------------------+"
@@ -49,13 +52,11 @@ do
 	hostUpYesorNot=$(cat pingResults.log | grep 100 | grep loss)
 	hostDOWN="3 packets transmitted, 0 packets received, 100.0% packet loss"
 	if [[ "$hostUpYesorNot" == "$hostDOWN" ]] ; then
-		#echo "---> PINGING HOST: $ip"
 		isDown="OFFLINE" 
-		echo "$ip\t$isDown" >> results.log
-                echo "$ip" >> OFFLINE-IPs-ONLY.log
+		echo "$ip\t$isDown" >> results_$todaysdate.log
+                echo "$ip" >> offline_ips_only_$todaysdate.log
 		echo "$ip $isDown" 
 		rm -r pingResults.log
-		#echo "Results at $(pwd) file: results.log"
 	else
 		echo "We're good to go!"
 		echo "---> UPLOADING FILE TO HOST: $ip"
@@ -67,11 +68,11 @@ do
 		d=" sh $2"
 		$c$ip$d
 		echo "---> COLLECTING RESULTS..."
+		ssh -t radmin@$ip "cat profiles-check-results.log" >> results_$todaysdate.log
 		echo " Done!"
-		ssh -t radmin@$ip "cat profiles-check-results.log" >> results.log
 	fi
 done
 echo "+-------------------------------------------------------------------------------------+"
-echo "Find results at: $(pwd)/results.log"
+echo "Find results at: $(pwd)/results_$todaysdate.log"
 echo ""
 echo ""
