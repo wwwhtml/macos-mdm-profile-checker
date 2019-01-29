@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #Script name: mdm-profile-checker.sh
 #Source: https://github.com/wwwhtml/macos-mdm-profile-checker/mdm-profile-checker.sh
 #Author: Daniel Arauz - DanArauz@gmail.com
@@ -41,7 +41,7 @@ echo ""
 echo "MDM Profile Checker in progress..."
 todaysdate=$(date +"%Y_%m_%d_%H_%M_%S")
 
-for ip in `cat $1 $2`
+for ip in `cat $1`
 do        
 	echo "+-------------------------------------------------------------------------------------+"
         echo "---> CHECKING REMOTE HOST $ip FOR AVAILABILITY..."
@@ -67,10 +67,8 @@ do
 		$c$ip$d
 		echo "---> COLLECTING RESULTS..."
 		ssh -t radmin@$ip "cat profiles-check-results.log" >> results_$todaysdate.log
-		echo " Done!"
 	fi
 done
 echo "+-------------------------------------------------------------------------------------+"
 echo "Find results at: $(pwd)/results_$todaysdate.log"
-echo ""
 echo ""
