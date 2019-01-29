@@ -1,5 +1,6 @@
 #!/bin/sh
-#Script name: MDM-Profile-Checker.sh
+#Script name: mdm-profile-checker.sh
+#Source: https://github.com/wwwhtml/macos-mdm-profile-checker/mdm-profile-checker.sh
 #Author: Daniel Arauz - DanArauz@gmail.com
 #Date: 2019-01-21 (MLK Day)
 #Description: Works way faster if remote computer has the controller computer's SSH Public key already.
