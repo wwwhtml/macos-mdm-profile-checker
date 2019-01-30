@@ -11,10 +11,10 @@ noProfiles="There are no configuration profiles installed in the system domain"
 
 if [[ "$profilesCheck" == "$noProfiles" ]] ; then
     echo "$profilesCheck"
-    echo "$(ipconfig getifaddr en0)\t$(hostname) NO-PROFILES" > profiles-check-results.log
+    echo "$(hostname)\t$(ipconfig getifaddr en0) PROFILES-NO" > profiles-check-results.log
     rm file2.sh
 else
     Profiles -C
-    echo "$(ipconfig getifaddr en0)\t$(hostname) YES-PROFILES" > profiles-check-results.log
+    echo "$(hostname)\t$(ipconfig getifaddr en0) PROFILES-YES" > profiles-check-results.log
     rm file2.sh
 fi
